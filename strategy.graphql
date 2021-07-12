@@ -1,0 +1,35 @@
+type TransferFromInfo @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  amount: BigInt!
+  success: Boolean!
+  transaction: TransactionInfo!
+  token: TokenInfo!
+}
+
+type BatchTransferInfo @entity {
+  id: ID!
+  from: Bytes!
+  num: BigInt!
+  gasCost: BigInt!
+  gasFee: BigInt!
+  transaction: TransactionInfo!
+  token: TokenInfo!
+}
+
+type TransactionInfo @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+  gasUsed: BigInt!
+  gasPrice: BigInt!
+  timestamp: BigInt!
+}
+
+type TokenInfo @entity {
+  id: ID!
+  symbol: String!
+  decimals: BigInt!
+}

@@ -1,0 +1,27 @@
+specVersion: 0.0.2
+schema:
+  file: ./strategy.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TransferHelper
+    network: bsctest
+    source:
+      address: '0x019b7b5dda7d7eb64fffb0fdd92695ffbc483b9a'
+      startBlock: 10536021
+      abi: TransferHelper
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - TransferFrom
+        - BatchTransfer
+      abis:
+        - name: TransferHelper
+          file: ./abis/TransferHelper.json
+      eventHandlers:
+        - event: TransferFrom(address,address,address,uint256,bool)
+          handler: handleTransferFrom
+        - event: BatchTransfer(address,string,uint256,address,uint256,uint256,uint256)
+          handler: handleBatchTransfer
+      file: ./handler/transferHelperHandler.ts
